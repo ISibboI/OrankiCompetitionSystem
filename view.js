@@ -1,11 +1,13 @@
 var express = require('express')
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser')
 var model = require('./model')
+var secrets = require('./secrets')
 
 var app = express()
 app.set('view engine', 'pug')
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'))
+app.use(require('express-nocaptcha')({secret: secrets.googleAPISecretKey}))
 
 app.locals.settings['x-powered-by'] = false
 app.locals.site = {
@@ -18,7 +20,6 @@ app.locals.author = {
 
 function displayError(res, referer, error) {
   res.render('error', {'referer': referer, 'error': error})
-
 }
 
 console.log('Settings:\n', app.locals)
@@ -28,12 +29,17 @@ app.get('/', function(req, res) {
 })
 
 app.get('/register', function(req, res) {
-  res.render('register')
+  res.render('register', {googleAPIWebsiteKey: secrets.googleAPIWebsiteKey})
 })
 
 app.post('/register', function(req, res) {
   if (!('name' in req.body) || !('password' in req.body)) {
     displayError(res, '/register', 'Missing parameters!')
+    return
+  }
+
+  if (!req.validnocaptcha) {
+    displayError(res, '/register', 'Captcha was unsuccessful!')
     return
   }
 
