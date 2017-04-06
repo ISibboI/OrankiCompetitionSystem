@@ -4,9 +4,10 @@
   "description": "A competition system for Pesä",
   "author": "Sebastian Schmidt isibboi@gmail.com",
   "scripts": {
-    "start": "node main.js"
+    "start": "node view.js",
+    "test": "node test.js"
   },
-  "main": "main.js",
+  "main": "view.js",
   "repository": {
     "type": "git",
     "url": "https://gihub.com/ISibboI/OrankiCompetitionSystem"
@@ -15,8 +16,14 @@
     "url": "https://github.com/ISibboI/OrankiCompetitionSystem/issues"
   },
   "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.1",
+    "es6-promise": "^4.1.0",
+    "express": "^4.15.2",
+    "http": "*",
+    "jquery": "^3.2.1",
     "mongoose": "^4.9.3",
-    "http": "*"
+    "pug": "^2.0.0-beta11"
   },
   "license": "GPL-3.0"
 }

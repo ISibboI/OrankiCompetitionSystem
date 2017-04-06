@@ -1,0 +1,45 @@
+include parts/head.pug
+
+body
+  include parts/header.pug
+  form(method='POST', id='registrationForm')
+    table
+      tr
+        td Username
+        td: input(type='text', name='name', id='name', required)
+        td: p(class='error', id='erroru')
+      tr
+        td Password
+        td: input(type='password', name='password', id='password', required)
+        td: p(class='error', id='errorpw')
+      tr
+        td Confirm password
+        td: input(type='password', id='verifyPassword', required)
+        td: p(class='error', id='errorpwverify')
+    input(type='submit', value='Register!')
+    
+  script(type='text/javascript').
+    $('#registrationForm').submit(function(event) {
+      var name = $('#name')[0].value
+      var password = $('#password')[0].value
+      var verifyPassword = $('#verifyPassword')[0].value
+      
+      if (name.length < 2 || name.length > 32) {
+        $('#erroru').text('Usernames must be between 2 and 32 characters long!')
+      } else {
+        $('#erroru').text('')
+      }
+      
+      if (password.length < 8 || password.length > 1024) {
+        $('#errorpw').text('Passwords must be at least 8 characters long!')
+      } else {
+        $('#errorpw').text('')
+      }
+    
+      if (password !== verifyPassword) {
+        $('#errorpwverify').text('Passwords do not match!')
+        event.preventDefault()
+      } else {
+        $('#errorpwverify').text('')
+      }
+    })
