@@ -1,0 +1,22 @@
+{
+  "name": "oranki-competition-system",
+  "version": "0.0.0",
+  "description": "A competition system for Pesä",
+  "author": "Sebastian Schmidt isibboi@gmail.com",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://gihub.com/ISibboI/OrankiCompetitionSystem"
+  },
+  "bugs": {
+    "url": "https://github.com/ISibboI/OrankiCompetitionSystem/issues"
+  },
+  "dependencies": {
+    "mongoose": "^4.9.3",
+    "http": "*"
+  },
+  "license": "GPL-3.0"
+}
