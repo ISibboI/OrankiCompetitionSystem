@@ -1,1 +1,2 @@
-exports.googleAPIKey = 'SET THIS'
+exports.googleAPISecretKey = ''
+exports.googleAPIWebsiteKey = ''
